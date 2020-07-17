@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
+                    <h:form>   
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+       
+    <p:panel header="Mensaje">  
+        <h:panelGrid columns="2" cellpadding="5">  
+            <p:outputLabel for="msg" value="Mensaje:" />   
+            <p:inputText id="msg" value="#{growlView.message}" required="true" />  
+        </h:panelGrid>  
+   
+        <p:commandButton value="Enviar" action="#{growlView.saveMessage}" update="@form" />
+    </p:panel>     
+</h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="200" closable="true" collapsible="true">
+                    <h:form>
+    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ 
+    <p:panel header="Select a Location" style="margin-bottom:10px;">
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel for="country" value="Country: " />
+            <p:selectOneMenu id="country" value="#{dropdownView.country}" style="width:150px">
+                <p:ajax listener="#{dropdownView.onCountryChange}" update="city" />
+                <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.countries}" />
+            </p:selectOneMenu>
+ 
+            <p:outputLabel for="city" value="City: " />
+            <p:selectOneMenu id="city" value="#{dropdownView.city}" style="width:150px">
+                <f:selectItem itemLabel="Select City" itemValue="" noSelectionOption="true" />
+                <f:selectItems value="#{dropdownView.cities}" />
+            </p:selectOneMenu>
+        </h:panelGrid>
+ 
+        <p:separator />
+ 
+        <p:commandButton value="Submit" update="msgs" action="#{dropdownView.displayLocation}" icon="pi pi-check" />
+    </p:panel>
+</h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Menu" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                   <h3 style="margin-top:0">Catalog</h3>
+<h:panelGrid columns="4" cellpadding="5">
+    <p:panel id="blind" header="Blind">
+        <h:outputText value="click" />
+        <p:effect type="blind" event="click">
+            <f:param name="direction" value="'horizontal'" />
+        </p:effect>
+    </p:panel>
+ 
+    <p:panel id="clip" header="Clip">
+        <h:outputText value="click" />
+        <p:effect type="clip" event="click" />
+    </p:panel>
+ 
+    <p:panel id="drop" header="Drop">
+        <h:outputText value="click" />
+        <p:effect type="drop" event="click" />
+    </p:panel>
+ 
+    <p:panel id="explode" header="Explode">
+        <h:outputText value="click" />
+        <p:effect type="explode" event="click" />
+    </p:panel>
+ 
+    <p:panel id="fold" header="Fold">
+        <h:outputText value="doubleclick" />
+        <p:effect type="fold" event="dblclick" />
+    </p:panel>
+ 
+    <p:panel id="puff" header="Puff">
+        <h:outputText value="doubleclick" />
+        <p:effect type="puff" event="dblclick" />
+    </p:panel>
+ 
+    <p:panel id="slide" header="Slide">
+        <h:outputText value="doubleclick" />
+        <p:effect type="slide" event="dblclick" />
+    </p:panel>
+ 
+    <p:panel id="scale" header="Scale">
+        <h:outputText value="doubleclick" />
+        <p:effect type="scale" event="dblclick">
+            <f:param name="percent" value="90" />
+        </p:effect>
+    </p:panel>
+ 
+    <p:panel id="bounce" header="Bounce">
+        <h:outputText value="click" />
+        <p:effect type="bounce" event="click" />
+    </p:panel>
+ 
+    <p:panel id="pulsate" header="Pulsate">
+        <h:outputText value="click" />
+        <p:effect type="pulsate" event="click" />
+    </p:panel>
+ 
+    <p:panel id="shake" header="Shake">
+        <h:outputText value="click" />
+        <p:effect type="shake" event="click" />
+    </p:panel>
+ 
+    <p:panel id="size" header="Size">
+        <h:outputText value="click" />
+        <p:effect type="size" event="click">
+            <f:param name="to" value="{width: 200,height: 60}" />
+        </p:effect>
+    </p:panel>
+</h:panelGrid>
+ 
+<h3>Target</h3>
+<p:commandButton type="button" value="Show" style="display:block" icon="pi pi-image">
+    <p:effect type="puff" event="click" for="img">
+        <f:param name="mode" value="'show'" />
+    </p:effect>
+</p:commandButton>
+<p:graphicImage id="img" name="pai.jpg" style="display:none"/>
+ 
+<h:form>
+    <h3>On Load</h3>
+    <p:messages id="messages" closable="true">
+        <p:effect type="pulsate" event="load" delay="500" />
+    </p:messages>
+ 
+    <p:panel id="panel" header="Message Effects" toggleable="true">
+        <h:panelGrid columns="2" cellpadding="5">
+            <p:outputLabel for="text" value="Type:" />
+            <p:inputText id="text" value="#{effectView.text}" required="true" />
+ 
+            <h:outputText />
+            <p:commandButton id="submit" value="Echo" action="#{effectView.echo}" update="messages"/>
+        </h:panelGrid>
+    </p:panel>
+</h:form>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
