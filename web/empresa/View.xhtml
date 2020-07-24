@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmpresaViewDlg" widgetVar="EmpresaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmpresaTitle}">
+            <h:form id="EmpresaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{empresaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_IDEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.IDEmpresa}" title="#{bundle.ViewEmpresaTitle_IDEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_nombreEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.nombreEmpresa}" title="#{bundle.ViewEmpresaTitle_nombreEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_tipoEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.tipoEmpresa}" title="#{bundle.ViewEmpresaTitle_tipoEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_numRuc}"/>
+                        <h:outputText value="#{empresaController.selected.numRuc}" title="#{bundle.ViewEmpresaTitle_numRuc}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_actividadEconomica}"/>
+                        <h:outputText value="#{empresaController.selected.actividadEconomica}" title="#{bundle.ViewEmpresaTitle_actividadEconomica}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_numeroEstudiantes}"/>
+                        <h:outputText value="#{empresaController.selected.numeroEstudiantes}" title="#{bundle.ViewEmpresaTitle_numeroEstudiantes}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_emailEmpresa}"/>
+                        <h:outputText value="#{empresaController.selected.emailEmpresa}" title="#{bundle.ViewEmpresaTitle_emailEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_numContacto}"/>
+                        <h:outputText value="#{empresaController.selected.numContacto}" title="#{bundle.ViewEmpresaTitle_numContacto}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_docAdjuntos}"/>
+                        <h:outputText value="#{empresaController.selected.docAdjuntos}" title="#{bundle.ViewEmpresaTitle_docAdjuntos}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_numConvenio}"/>
+                        <h:outputText value="#{empresaController.selected.numConvenio}" title="#{bundle.ViewEmpresaTitle_numConvenio}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_numInforme}"/>
+                        <h:outputText value="#{empresaController.selected.numInforme}" title="#{bundle.ViewEmpresaTitle_numInforme}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_horarioAtencion}"/>
+                        <h:outputText value="#{empresaController.selected.horarioAtencion}" title="#{bundle.ViewEmpresaTitle_horarioAtencion}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_firmaConvenio}"/>
+                        <h:outputText value="#{empresaController.selected.firmaConvenio}" title="#{bundle.ViewEmpresaTitle_firmaConvenio}"/>
+                        <h:outputText value="#{bundle.ViewEmpresaLabel_IDPersona}"/>
+                        <h:outputText value="#{empresaController.selected.IDPersona}" title="#{bundle.ViewEmpresaTitle_IDPersona}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmpresaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

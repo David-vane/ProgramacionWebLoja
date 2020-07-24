@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaCreateDlg" widgetVar="PersonaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePersonaTitle}">
+            <h:form id="PersonaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_IDPersona}" for="IDPersona" />
+                        <p:inputText id="IDPersona" value="#{personaController.selected.IDPersona}" title="#{bundle.CreatePersonaTitle_IDPersona}" required="true" requiredMessage="#{bundle.CreatePersonaRequiredMessage_IDPersona}"/>
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{personaController.selected.nombre}" title="#{bundle.CreatePersonaTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{personaController.selected.cedula}" title="#{bundle.CreatePersonaTitle_cedula}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{personaController.selected.direccion}" title="#{bundle.CreatePersonaTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_celular}" for="celular" />
+                        <p:inputText id="celular" value="#{personaController.selected.celular}" title="#{bundle.CreatePersonaTitle_celular}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_correoelectronico}" for="correoelectronico" />
+                        <p:inputText id="correoelectronico" value="#{personaController.selected.correoelectronico}" title="#{bundle.CreatePersonaTitle_correoelectronico}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_titulo}" for="titulo" />
+                        <p:inputText id="titulo" value="#{personaController.selected.titulo}" title="#{bundle.CreatePersonaTitle_titulo}" />
+                        <p:outputLabel value="#{bundle.CreatePersonaLabel_actividades}" for="actividades" />
+                        <p:inputText id="actividades" value="#{personaController.selected.actividades}" title="#{bundle.CreatePersonaTitle_actividades}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personaController.create}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PersonaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PersonaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

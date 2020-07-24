@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PasantiaEditDlg" widgetVar="PasantiaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPasantiaTitle}">
+            <h:form id="PasantiaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pasantiaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_IDPasantia}" for="IDPasantia" />
+                        <p:inputText id="IDPasantia" value="#{pasantiaController.selected.IDPasantia}" title="#{bundle.EditPasantiaTitle_IDPasantia}" required="true" requiredMessage="#{bundle.EditPasantiaRequiredMessage_IDPasantia}"/>
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_IDEmpresa}" for="IDEmpresa" />
+                        <p:inputText id="IDEmpresa" value="#{pasantiaController.selected.IDEmpresa}" title="#{bundle.EditPasantiaTitle_IDEmpresa}" />
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_IDEstudiante}" for="IDEstudiante" />
+                        <p:inputText id="IDEstudiante" value="#{pasantiaController.selected.IDEstudiante}" title="#{bundle.EditPasantiaTitle_IDEstudiante}" />
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy" value="#{pasantiaController.selected.fechaInicio}" title="#{bundle.EditPasantiaTitle_fechaInicio}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_fechaFinal}" for="fechaFinal" />
+                        <p:calendar id="fechaFinal" pattern="MM/dd/yyyy" value="#{pasantiaController.selected.fechaFinal}" title="#{bundle.EditPasantiaTitle_fechaFinal}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_incidencias}" for="incidencias" />
+                        <p:inputText id="incidencias" value="#{pasantiaController.selected.incidencias}" title="#{bundle.EditPasantiaTitle_incidencias}" />
+                        <p:outputLabel value="#{bundle.EditPasantiaLabel_ADDesempeño}" for="ADDesempeño" />
+                        <p:inputText id="ADDesempeño" value="#{pasantiaController.selected.ADDesempeño}" title="#{bundle.EditPasantiaTitle_ADDesempeño}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pasantiaController.update}" value="#{bundle.Save}" update="display,:PasantiaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PasantiaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PasantiaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

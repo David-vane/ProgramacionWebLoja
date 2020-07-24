@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PasantiaViewDlg" widgetVar="PasantiaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPasantiaTitle}">
+            <h:form id="PasantiaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pasantiaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_IDPasantia}"/>
+                        <h:outputText value="#{pasantiaController.selected.IDPasantia}" title="#{bundle.ViewPasantiaTitle_IDPasantia}"/>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_IDEmpresa}"/>
+                        <h:outputText value="#{pasantiaController.selected.IDEmpresa}" title="#{bundle.ViewPasantiaTitle_IDEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_IDEstudiante}"/>
+                        <h:outputText value="#{pasantiaController.selected.IDEstudiante}" title="#{bundle.ViewPasantiaTitle_IDEstudiante}"/>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_fechaInicio}"/>
+                        <h:outputText value="#{pasantiaController.selected.fechaInicio}" title="#{bundle.ViewPasantiaTitle_fechaInicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_fechaFinal}"/>
+                        <h:outputText value="#{pasantiaController.selected.fechaFinal}" title="#{bundle.ViewPasantiaTitle_fechaFinal}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_incidencias}"/>
+                        <h:outputText value="#{pasantiaController.selected.incidencias}" title="#{bundle.ViewPasantiaTitle_incidencias}"/>
+                        <h:outputText value="#{bundle.ViewPasantiaLabel_ADDesempeño}"/>
+                        <h:outputText value="#{pasantiaController.selected.ADDesempeño}" title="#{bundle.ViewPasantiaTitle_ADDesempeño}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PasantiaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

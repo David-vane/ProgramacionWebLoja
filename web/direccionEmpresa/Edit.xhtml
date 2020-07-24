@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DireccionEmpresaEditDlg" widgetVar="DireccionEmpresaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDireccionEmpresaTitle}">
+            <h:form id="DireccionEmpresaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{direccionEmpresaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDireccionEmpresaLabel_IDDireccionEmpresa}" for="IDDireccionEmpresa" />
+                        <p:inputText id="IDDireccionEmpresa" value="#{direccionEmpresaController.selected.IDDireccionEmpresa}" title="#{bundle.EditDireccionEmpresaTitle_IDDireccionEmpresa}" required="true" requiredMessage="#{bundle.EditDireccionEmpresaRequiredMessage_IDDireccionEmpresa}"/>
+                        <p:outputLabel value="#{bundle.EditDireccionEmpresaLabel_provincia}" for="provincia" />
+                        <p:inputText id="provincia" value="#{direccionEmpresaController.selected.provincia}" title="#{bundle.EditDireccionEmpresaTitle_provincia}" />
+                        <p:outputLabel value="#{bundle.EditDireccionEmpresaLabel_canton}" for="canton" />
+                        <p:inputText id="canton" value="#{direccionEmpresaController.selected.canton}" title="#{bundle.EditDireccionEmpresaTitle_canton}" />
+                        <p:outputLabel value="#{bundle.EditDireccionEmpresaLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{direccionEmpresaController.selected.direccion}" title="#{bundle.EditDireccionEmpresaTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.EditDireccionEmpresaLabel_IDEmpresa}" for="IDEmpresa" />
+                        <p:selectOneMenu id="IDEmpresa" value="#{direccionEmpresaController.selected.IDEmpresa}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{empresaController.itemsAvailableSelectOne}"
+                                           var="IDEmpresaItem"
+                                           itemValue="#{IDEmpresaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{direccionEmpresaController.update}" value="#{bundle.Save}" update="display,:DireccionEmpresaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DireccionEmpresaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DireccionEmpresaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

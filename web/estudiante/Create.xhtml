@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstudianteCreateDlg" widgetVar="EstudianteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEstudianteTitle}">
+            <h:form id="EstudianteCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{estudianteController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_IDEstudiante}" for="IDEstudiante" />
+                        <p:inputText id="IDEstudiante" value="#{estudianteController.selected.IDEstudiante}" title="#{bundle.CreateEstudianteTitle_IDEstudiante}" required="true" requiredMessage="#{bundle.CreateEstudianteRequiredMessage_IDEstudiante}"/>
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_cedula}" for="cedula" />
+                        <p:inputText id="cedula" value="#{estudianteController.selected.cedula}" title="#{bundle.CreateEstudianteTitle_cedula}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{estudianteController.selected.nombres}" title="#{bundle.CreateEstudianteTitle_nombres}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{estudianteController.selected.apellidos}" title="#{bundle.CreateEstudianteTitle_apellidos}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar id="fechaNacimiento" pattern="HH:mm:ss" value="#{estudianteController.selected.fechaNacimiento}" title="#{bundle.EditEstudianteTitle_fechaNacimiento}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_celular}" for="celular" />
+                        <p:inputText id="celular" value="#{estudianteController.selected.celular}" title="#{bundle.CreateEstudianteTitle_celular}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{estudianteController.selected.correo}" title="#{bundle.CreateEstudianteTitle_correo}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{estudianteController.selected.direccion}" title="#{bundle.CreateEstudianteTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_ciclo}" for="ciclo" />
+                        <p:inputText id="ciclo" value="#{estudianteController.selected.ciclo}" title="#{bundle.CreateEstudianteTitle_ciclo}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_paralelo}" for="paralelo" />
+                        <p:inputText id="paralelo" value="#{estudianteController.selected.paralelo}" title="#{bundle.CreateEstudianteTitle_paralelo}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_extension}" for="extension" />
+                        <p:inputText id="extension" value="#{estudianteController.selected.extension}" title="#{bundle.CreateEstudianteTitle_extension}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_afinidades}" for="afinidades" />
+                        <p:inputText id="afinidades" value="#{estudianteController.selected.afinidades}" title="#{bundle.CreateEstudianteTitle_afinidades}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_discapacidad}" for="discapacidad" />
+                        <p:inputText id="discapacidad" value="#{estudianteController.selected.discapacidad}" title="#{bundle.CreateEstudianteTitle_discapacidad}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_numEmergencia}" for="numEmergencia" />
+                        <p:inputText id="numEmergencia" value="#{estudianteController.selected.numEmergencia}" title="#{bundle.CreateEstudianteTitle_numEmergencia}" />
+                        <p:outputLabel value="#{bundle.CreateEstudianteLabel_IDCarrera}" for="IDCarrera" />
+                        <p:selectOneMenu id="IDCarrera" value="#{estudianteController.selected.IDCarrera}" >
+                            <f:selectItems value="#{carreraController.itemsAvailableSelectOne}"
+                                           var="IDCarreraItem"
+                                           itemValue="#{IDCarreraItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estudianteController.create}" value="#{bundle.Save}" update="display,:EstudianteListForm:datalist,:growl" oncomplete="handleSubmit(args,'EstudianteCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EstudianteCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

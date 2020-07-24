@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RegistroActividadCreateDlg" widgetVar="RegistroActividadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateRegistroActividadTitle}">
+            <h:form id="RegistroActividadCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{registroActividadController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_IDRegistroActividad}" for="IDRegistroActividad" />
+                        <p:inputText id="IDRegistroActividad" value="#{registroActividadController.selected.IDRegistroActividad}" title="#{bundle.CreateRegistroActividadTitle_IDRegistroActividad}" required="true" requiredMessage="#{bundle.CreateRegistroActividadRequiredMessage_IDRegistroActividad}"/>
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_horaEntrada}" for="horaEntrada" />
+                        <p:calendar id="horaEntrada" pattern="HH:mm:ss" value="#{registroActividadController.selected.horaEntrada}" title="#{bundle.EditRegistroActividadTitle_horaEntrada}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_horaSalida}" for="horaSalida" />
+                        <p:calendar id="horaSalida" pattern="HH:mm:ss" value="#{registroActividadController.selected.horaSalida}" title="#{bundle.EditRegistroActividadTitle_horaSalida}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy" value="#{registroActividadController.selected.fecha}" title="#{bundle.EditRegistroActividadTitle_fecha}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_IDEmpresa}" for="IDEmpresa" />
+                        <p:selectOneMenu id="IDEmpresa" value="#{registroActividadController.selected.IDEmpresa}" >
+                            <f:selectItems value="#{empresaController.itemsAvailableSelectOne}"
+                                           var="IDEmpresaItem"
+                                           itemValue="#{IDEmpresaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateRegistroActividadLabel_IDEstudiante}" for="IDEstudiante" />
+                        <p:selectOneMenu id="IDEstudiante" value="#{registroActividadController.selected.IDEstudiante}" >
+                            <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"
+                                           var="IDEstudianteItem"
+                                           itemValue="#{IDEstudianteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{registroActividadController.create}" value="#{bundle.Save}" update="display,:RegistroActividadListForm:datalist,:growl" oncomplete="handleSubmit(args,'RegistroActividadCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RegistroActividadCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

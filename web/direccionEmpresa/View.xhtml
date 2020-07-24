@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DireccionEmpresaViewDlg" widgetVar="DireccionEmpresaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDireccionEmpresaTitle}">
+            <h:form id="DireccionEmpresaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{direccionEmpresaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDireccionEmpresaLabel_IDDireccionEmpresa}"/>
+                        <h:outputText value="#{direccionEmpresaController.selected.IDDireccionEmpresa}" title="#{bundle.ViewDireccionEmpresaTitle_IDDireccionEmpresa}"/>
+                        <h:outputText value="#{bundle.ViewDireccionEmpresaLabel_provincia}"/>
+                        <h:outputText value="#{direccionEmpresaController.selected.provincia}" title="#{bundle.ViewDireccionEmpresaTitle_provincia}"/>
+                        <h:outputText value="#{bundle.ViewDireccionEmpresaLabel_canton}"/>
+                        <h:outputText value="#{direccionEmpresaController.selected.canton}" title="#{bundle.ViewDireccionEmpresaTitle_canton}"/>
+                        <h:outputText value="#{bundle.ViewDireccionEmpresaLabel_direccion}"/>
+                        <h:outputText value="#{direccionEmpresaController.selected.direccion}" title="#{bundle.ViewDireccionEmpresaTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewDireccionEmpresaLabel_IDEmpresa}"/>
+                        <h:outputText value="#{direccionEmpresaController.selected.IDEmpresa}" title="#{bundle.ViewDireccionEmpresaTitle_IDEmpresa}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DireccionEmpresaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
